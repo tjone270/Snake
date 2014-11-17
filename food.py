@@ -28,7 +28,7 @@ class Food():
 
         while True:
 
-            self.apple_pos = (random.randint(self.WIDTH-self.WIDTH, self.WIDTH), random.randint(self.HEIGHT-self.HEIGHT, self.HEIGHT))
+            self.apple_pos = (random.randint(self.WIDTH-self.WIDTH, self.WIDTH - 20), random.randint(self.HEIGHT-self.HEIGHT, self.HEIGHT - 20))  # -20 stops the apple spawning off screen
             apple_in_snake = False
 
             if self.apple_pos[0] % 20 == 0 and self.apple_pos[1] %20 == 0:  # checks if divisible by twenty as snake moves 20 pixels at a time
