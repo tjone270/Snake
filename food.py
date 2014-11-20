@@ -36,7 +36,6 @@ class Food():
                 for i in range(0, len(x)-1):
                     if x[i]-20 <= self.apple_pos[0] and x[i]+20 >= self.apple_pos[0] and y[i]-20 <= self.apple_pos[1] and y[i]+20 >= self.apple_pos[1]:
                         apple_in_snake = True
-                        print("APPLE IN SNAKE!")
                         break
             else:
                 continue

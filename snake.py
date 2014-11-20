@@ -20,14 +20,18 @@ class Snake():
     def update_position(self):
         get_key_pressed = pygame.key.get_pressed()
 
-        if get_key_pressed[pygame.K_w] and self.direction != "down":
-            self.direction = "up"
-        elif get_key_pressed[pygame.K_s] and self.direction != "up":
-            self.direction = "down"
-        elif get_key_pressed[pygame.K_a] and self.direction != "right":
-            self.direction = "left"
-        elif get_key_pressed[pygame.K_d] and self.direction != "left":
-            self.direction = "right"
+        if get_key_pressed[pygame.K_w] or get_key_pressed[pygame.K_UP]:
+            if not self.direction == "down":
+                self.direction = "up"
+        elif get_key_pressed[pygame.K_s] or get_key_pressed[pygame.K_DOWN]:
+            if not self.direction == "up":
+                self.direction = "down"
+        elif get_key_pressed[pygame.K_a] or get_key_pressed[pygame.K_LEFT]:
+            if not self.direction == "right":
+                self.direction = "left"
+        elif get_key_pressed[pygame.K_d] or get_key_pressed[pygame.K_RIGHT]:
+            if not self.direction == "left":
+                self.direction = "right"
 
         i = len(self.x) - 1
 
@@ -61,9 +65,14 @@ class Snake():
             self.x.append(self.x[xy_len-1] - 20)
             self.y.append(self.y[xy_len-1])
 
-    def check_in_bounds(self, WIDTH, HEIGHT):
+    def check_out_bounds(self, WIDTH, HEIGHT):
         if self.x[0] + 9 > WIDTH or self.x[0] + 9 < WIDTH - WIDTH or self.y[0] + 9 > HEIGHT or self.y[0] + 9 < HEIGHT - HEIGHT:
             return True
+
+    def check_crashed(self, WIDTH, HEIGHT):
+        for i in range(1, len(self.x) -1):
+            if self.x[0] == self.x[i] and self.y[0] == self.y[i]:
+                return True
 
     def blit_snake(self, game_display):
         for i in range(0, len(self.x)):
