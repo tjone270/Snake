@@ -28,7 +28,7 @@ class Food():
 
         while True:
 
-            self.apple_pos = (random.randint(self.WIDTH-self.WIDTH, self.WIDTH - 20), random.randint(self.HEIGHT-self.HEIGHT, self.HEIGHT - 20))  # -20 stops the apple spawning off screen
+            self.apple_pos = (random.randint(20, self.WIDTH - 40), random.randint(20, self.HEIGHT - 40))  # -40 stops the apple spawning off screen and on edge
             apple_in_snake = False
 
             if self.apple_pos[0] % 20 == 0 and self.apple_pos[1] %20 == 0:  # checks if divisible by twenty as snake moves 20 pixels at a time
@@ -53,5 +53,6 @@ class Food():
 
     def blit_apple(self, game_display):
         game_display.blit(self.apple, self.apple_pos)
+
 
 

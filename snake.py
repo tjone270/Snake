@@ -8,8 +8,14 @@ class Snake():
     def __init__(self, WIDTH, HEIGHT):
         half_width = WIDTH/2
         half_height = HEIGHT/2
-        self.x = [half_width, half_width, half_width]
-        self.y = [half_height, half_height-20, half_height-40]
+        snake_start_len = 5
+        self.x = []
+        self.y = []
+        for _ in range(0, snake_start_len):
+            self.x.append(half_width)
+        for x in range(0, snake_start_len):
+            self.y.append(half_height+(20*x))
+
         self.snake_part = pygame.image.load("res\images\snake_part.png")
         self.direction = "up"
 
@@ -41,11 +47,11 @@ class Snake():
             i -= 1
 
         if self.direction == "up":
-            self.y[0] += -20
+            self.y[0] -= 20
         elif self.direction == "down":
             self.y[0] += 20
         elif self.direction == "left":
-            self.x[0] += -20
+            self.x[0] -= 20
         elif self.direction == "right":
             self.x[0] += 20
 
@@ -69,8 +75,8 @@ class Snake():
         if self.x[0] + 9 > WIDTH or self.x[0] + 9 < WIDTH - WIDTH or self.y[0] + 9 > HEIGHT or self.y[0] + 9 < HEIGHT - HEIGHT:
             return True
 
-    def check_crashed(self, WIDTH, HEIGHT):
-        for i in range(1, len(self.x) -1):
+    def check_crashed(self):
+        for i in range(1, len(self.x)-1):
             if self.x[0] == self.x[i] and self.y[0] == self.y[i]:
                 return True
 
